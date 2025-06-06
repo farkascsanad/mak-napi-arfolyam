@@ -1,0 +1,39 @@
+(async () => {
+  const input = document.querySelector('#datepicker-textfield');
+  const button = document.querySelector('#modify');
+
+  const startDate = new Date('2025-06-01');
+  const endDate = new Date('2025-06-07');
+
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const formatted = d.toISOString().split('T')[0].replace(/-/g, '.'); // yyyy.mm.dd
+
+    // Click to focus (in case it's needed)
+    input.focus();
+    input.click();
+
+    // Set the value the React way
+    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+    nativeInputValueSetter.call(input, formatted);
+
+    // Trigger full set of events
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    input.dispatchEvent(new Event('blur', { bubbles: true }));
+
+    await new Promise(r => setTimeout(r, 500)); // Wait for date state to be updated
+
+    button.click();
+
+    // Wait for PDF tab or download to complete
+    await new Promise(r => setTimeout(r, 4000));
+  }
+})();
+
+
+// Befektetések /Számlakimutatások / Számlakimutatás napi bruttó vételi árfolyamon
+amjd script tetszőleges dátumon és vársz , majd a java code adatbázisba.
+Chrome átállítása autodownloadra : 
+Open Chrome.
+Go to: chrome://settings/content/pdfDocuments
+Enable “Download PDFs” instead of opening them in Chrome.
