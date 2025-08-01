@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS raw.napi_brutto_veteli_arfolyam (
 <ol>
   <li>Nyisd meg: <code>chrome://settings/content/pdfDocuments</code></li>
   <li>Kapcsold be: <strong>"Download PDFs instead of opening them in Chrome"</strong></li>
+  <li>Ha Adobe PDF reader a default PDF olvasó, akkor érdemes kikapcsolni a következőt: Preferences -> General -> Uncheck Open PDF-s automatically in Reade when they are downloaded from Chrome browser. Mert elég idegesítő, hogy folyamatosan nyitja meg.</strong></li>
 </ol>
 
 <h4>b) Webkincstár lépések</h4>
@@ -58,6 +59,7 @@ CREATE TABLE IF NOT EXISTS raw.napi_brutto_veteli_arfolyam (
 
 <ol>
   <li>Hozz létre egy <code>pdf</code> mappát</li>
+  <li>És írd át a kód tetején a te mappádra: 		String directoryPath = "C:\\DEV\\dev-workspace\\csanszi-budget\\pdf"; </li>li>
   <li>Másold ide a letöltött PDF-eket</li>
   <li>Futtasd a Java programot</li>
   <li>A program feldolgozza a PDF-eket, és feltölti az adatokat az adatbázisba</li>
